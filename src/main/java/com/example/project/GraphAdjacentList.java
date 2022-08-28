@@ -90,8 +90,20 @@ public class GraphAdjacentList implements Graph {
     }
 
     public boolean removeVertex(int vertex){
-        return false;
+    	Vertex vertice = vertices.get(vertex);
+    	
+    	if (vertice.adjacentVertices.isEmpty()) {
+			return false;
+		}else{
+			for (Vertex v : vertice.adjacentVertices){
+				removeEdge(vertice.data, v.data);	
+			}
+		}
+    	vertices.remove(vertex);
+    	numVertices--;
+        return true;
     }
+
 
     public static void main(String args[]) {
         GraphAdjacentList graph = new GraphAdjacentList();
